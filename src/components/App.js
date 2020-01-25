@@ -1,5 +1,10 @@
 import React from 'react';
-import fetchCharacters from './services/fetchCharacters';
+import fetchCharacters from '../services/fetchCharacters';
+import Header from "./Header";
+import Filters from "./Filters";
+import CharactersList from "./CharactersList";
+import CharacterCard from "./CharacterCard";
+import CharacterDetail from "./CharacterDetail";
 
 
 class App extends React.Component {
@@ -20,6 +25,13 @@ class App extends React.Component {
     return (
       <div>
         Probando...
+        <Header />
+        <Filters />
+        <CharactersList />
+        <CharacterCard />
+        <CharacterDetail />
+
+
 
       </div>
     );
