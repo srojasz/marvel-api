@@ -12,9 +12,32 @@ class App extends React.Component {
 
     this.state = {
       isLoading: true,
+      search: "",
       characters: []
     }
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
+
+  // helpers
+
+  handleSearch(search) {
+    this.setState({
+      search
+    })
+  }
+
+  charFiltered() {
+    const characters = this.state.characters;
+    const search = this.state.search;
+
+    characters.filter((character =>
+      character.name.toLowerCase().includes(search)))
+  }
+
+
+
+  // fetch
 
   componentDidMount() {
     fetchCharacters().then(characters => {
@@ -33,18 +56,20 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.search, this.charFiltered())
     return (
       <div>
-        Probando...
         <Header />
-        <Filters />
+        <Filters
+          handleSearch={this.handleSearch}
+          search={this.state.search} />
         <CharactersList
-          characters={this.state.characters} />
+          characters={this.charFiltered}
+        />
 
         <CharacterDetail />
 
-      </div>
+      </div >
     );
   }
 }
