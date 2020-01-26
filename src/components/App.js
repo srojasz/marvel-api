@@ -17,6 +17,7 @@ class App extends React.Component {
     }
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.filterChar = this.filterChar.bind(this);
   }
 
   // helpers
@@ -27,12 +28,14 @@ class App extends React.Component {
     })
   }
 
-  charFiltered() {
+  filterChar() {
     const characters = this.state.characters;
-    const search = this.state.search;
 
-    characters.filter((character =>
-      character.name.toLowerCase().includes(search)))
+    return (
+
+      characters.filter((character =>
+        character.name.toLowerCase().includes(this.state.search)))
+    )
   }
 
 
@@ -56,7 +59,8 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.search, this.charFiltered())
+    console.log(this.state.characters)
+
     return (
       <div>
         <Header />
@@ -64,7 +68,7 @@ class App extends React.Component {
           handleSearch={this.handleSearch}
           search={this.state.search} />
         <CharactersList
-          characters={this.charFiltered}
+          characters={this.filterChar()}
         />
 
         <CharacterDetail />

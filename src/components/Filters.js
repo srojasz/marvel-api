@@ -2,7 +2,7 @@ import React from 'react';
 
 function Filters(props) {
 
-  function onSubmit(ev) {
+  function handleSubmit(ev) {
     ev.preventDefault();
   }
 
@@ -15,7 +15,7 @@ function Filters(props) {
 
     <form
       className="form"
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="search">
         ¿Qué personaje buscas?
