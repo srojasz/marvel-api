@@ -12,26 +12,38 @@ class App extends React.Component {
     super(props);
 
     this.state = {
+      isLoading: true,
       characters: []
     }
   }
 
   componentDidMount() {
-    fetchCharacters().then(characters => this.setState({ characters }));
+    fetchCharacters().then(characters => {
+      if (characters === undefined) {
+        this.setState({
+          isLoading: true
+        })
+      } else {
+
+        this.setState({
+          isLoading: false,
+          characters
+        })
+      }
+    })
   }
 
   render() {
-    console.log(this.state.characters)
+    console.log(this.state)
     return (
       <div>
         Probando...
         <Header />
         <Filters />
-        <CharactersList />
+        <CharactersList
+          characters={this.state.characters} />
         <CharacterCard />
         <CharacterDetail />
-
-
 
       </div>
     );

@@ -1,6 +1,9 @@
 import React from 'react';
 
-function CharactersList() {
+function CharactersList(props) {
+
+
+
   return <p>CharactersList</p>;
 }
 
