@@ -3,7 +3,6 @@ import fetchCharacters from '../services/fetchCharacters';
 import Header from "./Header";
 import Filters from "./Filters";
 import CharactersList from "./CharactersList";
-import CharacterCard from "./CharacterCard";
 import CharacterDetail from "./CharacterDetail";
 
 
@@ -42,7 +41,7 @@ class App extends React.Component {
         <Filters />
         <CharactersList
           characters={this.state.characters} />
-        <CharacterCard />
+
         <CharacterDetail />
 
       </div>
