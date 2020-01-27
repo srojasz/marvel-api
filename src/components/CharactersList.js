@@ -2,7 +2,6 @@ import React from 'react';
 import CharacterCard from './CharacterCard';
 
 function CharactersList(props) {
-
   if (props.characters.length === 0) {
     return (
       <p>Lo sentimos, no hay coincidencias</p>
