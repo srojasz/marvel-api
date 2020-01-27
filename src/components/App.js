@@ -14,11 +14,12 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       search: "",
+      error: "",
       characters: []
     }
 
     this.handleSearch = this.handleSearch.bind(this);
-    this.filterChar = this.filterChar.bind(this);
+    // this.filterChar = this.filterChar.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
   }
 
@@ -26,19 +27,42 @@ class App extends React.Component {
 
   handleSearch(search) {
     this.setState({
-      search
+      search,
+      isLoading: true
     })
+
+    fetchCharacters(search)
+      .then(characters => {
+        if (characters === undefined) {
+          this.setState({
+            isLoading: true
+          })
+        } else {
+          this.setState({
+            isLoading: false,
+            characters
+          })
+        }
+      })
+      .catch(err => {
+        console.error('my error', err)
+        this.setState({
+          isLoading: false,
+          error: "Please try again"
+        })
+      })
   }
 
-  filterChar() {
-    const characters = this.state.characters;
 
-    return (
+  // filterChar() {
+  //   const characters = this.state.characters;
 
-      characters.filter((character =>
-        character.name.toLowerCase().includes(this.state.search)))
-    )
-  }
+  //   return (
+
+  //     characters.filter((character =>
+  //       character.name.toLowerCase().includes(this.state.search)))
+  //   )
+  // }
 
 
 
@@ -83,7 +107,7 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state.characters)
+    console.log(this.state.search)
 
     return (
       <div>
@@ -95,7 +119,7 @@ class App extends React.Component {
               handleSearch={this.handleSearch}
               search={this.state.search} />
             <CharactersList
-              characters={this.filterChar()}
+              characters={this.state.characters}
             />
           </Route>
           <Route
