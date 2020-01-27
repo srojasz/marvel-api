@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function CharacterCard(props) {
 
-  const { name, img, comic, comicNumber } = props;
+  const { name, id, img, comic, comicNumber } = props;
+  const route = `/character/${id}`;
 
   return (
     <React.Fragment>
@@ -16,6 +18,13 @@ function CharacterCard(props) {
         title={`Pincha aquí para acceder a los comics disponibles de ${name}`}>
         {`Descubre los comics de ${name}`}
       </a>
+      <Link to={route}>
+        <button
+          title="Pincha aquí para conocer todos los detalles">
+          Más información
+        </button>
+      </Link>
+
     </React.Fragment>
   )
 }

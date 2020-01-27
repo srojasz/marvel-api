@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import fetchCharacters from '../services/fetchCharacters';
 import Header from "./Header";
 import Filters from "./Filters";
@@ -18,6 +19,7 @@ class App extends React.Component {
 
     this.handleSearch = this.handleSearch.bind(this);
     this.filterChar = this.filterChar.bind(this);
+    this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
   }
 
   // helpers
@@ -58,21 +60,49 @@ class App extends React.Component {
     })
   }
 
+
+  // rendering
+
+  renderCharacterDetail(props) {
+
+    const routeId = parseInt(props.match.params.id);
+
+    const selectedCharacter = this.state.characters.find(character => character.id === routeId)
+    if (selectedCharacter === undefined) {
+      return <h4 >
+        Personaje no encontrado
+        </h4>
+    } else {
+
+      return (
+
+        < CharacterDetail character={selectedCharacter} />
+      );
+    }
+  }
+
+
   render() {
     console.log(this.state.characters)
 
     return (
       <div>
         <Header />
-        <Filters
-          handleSearch={this.handleSearch}
-          search={this.state.search} />
-        <CharactersList
-          characters={this.filterChar()}
-        />
 
-        <CharacterDetail />
+        <Switch>
+          <Route exact path='/'>
+            <Filters
+              handleSearch={this.handleSearch}
+              search={this.state.search} />
+            <CharactersList
+              characters={this.filterChar()}
+            />
+          </Route>
+          <Route
+            path='/character/:id'
+            render={this.renderCharacterDetail} />
 
+        </Switch>
       </div >
     );
   }

@@ -17,6 +17,7 @@ function CharactersList(props) {
 
             <CharacterCard
               name={character.name}
+              id={character.id}
               img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
               comic={character.comics.collectionURI}
               comicNumber={character.comics.available}
