@@ -1,4 +1,5 @@
 import React from 'react';
+import "../stylesheets/filters.scss";
 
 function Filters(props) {
 
@@ -17,14 +18,16 @@ function Filters(props) {
       className="form"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="search">
+      <label
+        className="form__label" htmlFor="search">
         ¿Qué personaje buscas?
         </label>
       <input
+        className="form__input-text"
         type="text"
         name="search"
         value={props.search}
-        placeholder="Ej. Aaron Stack"
+        placeholder="Ej. Hulk"
         onChange={handleSearch} />
     </form>
 

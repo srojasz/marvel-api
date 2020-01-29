@@ -1,35 +1,46 @@
 import React from 'react';
+import noresults from "../images/no-results.jpg";
+import "../stylesheets/list.scss";
 import CharacterCard from './CharacterCard';
 
 function CharactersList(props) {
   if (props.characters.length === 0) {
     return (
-      <p>Lo sentimos, no hay coincidencias</p>
+      <section className="noresults">
+        <p className="noresults__text">Lo sentimos, no hemos encontrado lo que buscas. ¡Inténtalo otra vez!</p>
+        <img className="noresults__img" alt="Imagen de Supermán llorando"
+          src={noresults} />
+      </section>
     )
   } else {
     return (
-      <ul>
-        {props.characters.map(character =>
+      <section className="list">
+        <ul className="list__list">
+          {props.characters.map(character =>
 
-          < li
-            key={character.id}>
+            < li className="list__item"
 
-            <CharacterCard
-              name={character.name}
-              id={character.id}
-              img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-              comic={character.comics.collectionURI}
-              comicNumber={character.comics.available}
+              key={character.id}>
 
-            />
+              <CharacterCard
+
+                name={character.name}
+                id={character.id}
+                img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                comic={character.comics.collectionURI}
+                comicNumber={character.comics.available}
+
+              />
 
 
-          </li>
+            </li>
 
-        )
-        }
 
-      </ul >
+          )
+          }
+
+        </ul >
+      </section>
     )
   }
 

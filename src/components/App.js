@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import fetchCharacters from '../services/fetchCharacters';
+import "../stylesheets/app.scss"
 import Header from "./Header";
 import Filters from "./Filters";
 import CharactersList from "./CharactersList";
@@ -19,7 +20,6 @@ class App extends React.Component {
     }
 
     this.handleSearch = this.handleSearch.bind(this);
-    // this.filterChar = this.filterChar.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
   }
 
@@ -52,18 +52,6 @@ class App extends React.Component {
         })
       })
   }
-
-
-  // filterChar() {
-  //   const characters = this.state.characters;
-
-  //   return (
-
-  //     characters.filter((character =>
-  //       character.name.toLowerCase().includes(this.state.search)))
-  //   )
-  // }
-
 
 
   // fetch
@@ -110,7 +98,7 @@ class App extends React.Component {
     console.log(this.state.search)
 
     return (
-      <div>
+      <div className="container">
         <Header />
 
         <Switch>

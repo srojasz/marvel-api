@@ -7,8 +7,9 @@ function CharacterCard(props) {
   const route = `/character/${id}`;
 
   return (
-    <React.Fragment>
+    <div className="card">
       <img
+        className="card__img"
         alt={`Imagen de ${name}`}
         src={img} />
       <p>{name}</p>
@@ -25,7 +26,7 @@ function CharacterCard(props) {
         </button>
       </Link>
 
-    </React.Fragment>
+    </div>
   )
 }
 
