@@ -16,10 +16,12 @@ class App extends React.Component {
       isLoading: true,
       search: "",
       error: "",
+      comics: "",
       characters: []
     }
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleCheckbox = this.handleCheckbox.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
   }
 
@@ -28,7 +30,8 @@ class App extends React.Component {
   handleSearch(search) {
     this.setState({
       search,
-      isLoading: true
+      isLoading: true,
+
     })
 
     fetchCharacters(search)
@@ -40,7 +43,8 @@ class App extends React.Component {
         } else {
           this.setState({
             isLoading: false,
-            characters
+            characters,
+
           })
         }
       })
@@ -53,6 +57,51 @@ class App extends React.Component {
       })
   }
 
+  handleCheckbox(value) {
+    this.setState({
+      comics: value
+    })
+
+
+    let min;
+    let max;
+
+    if (value === "-10") {
+      min = 0;
+      max = 10;
+    }
+    else if (value === "11-20") {
+      min = 11;
+      max = 20;
+    }
+    else if (value === "+20") {
+      min = 21;
+      max = Number.POSITIVE_INFINITY;
+    }
+    else {
+      min = undefined;
+      max = undefined;
+    }
+
+
+
+    fetchCharacters(this.state.search, min, max).then(characters => {
+      if (characters === undefined) {
+        this.setState({
+          isLoading: true,
+
+        })
+      } else {
+
+        this.setState({
+          isLoading: false,
+
+          characters
+        })
+      }
+
+    })
+  }
 
   // fetch
 
@@ -71,7 +120,6 @@ class App extends React.Component {
       }
     })
   }
-
 
   // rendering
 
@@ -95,8 +143,7 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state.search)
-
+    console.log(this.state.characters)
     return (
       <div className="container">
         <Header />
@@ -105,7 +152,8 @@ class App extends React.Component {
           <Route exact path='/'>
             <Filters
               handleSearch={this.handleSearch}
-              search={this.state.search} />
+              search={this.state.search}
+              handleCheckbox={this.handleCheckbox} />
             <CharactersList
               characters={this.state.characters}
             />
