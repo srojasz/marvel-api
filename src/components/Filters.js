@@ -12,9 +12,9 @@ function Filters(props) {
     props.handleSearch(search);
   }
 
-  function handleCheckbox(ev) {
-    const comics = ev.target.value;
-    props.handleCheckbox(comics);
+  function handleComics(ev) {
+    const value = ev.target.value;
+    props.handleComics(value);
   }
 
   return (
@@ -40,7 +40,7 @@ function Filters(props) {
 
 
         <select
-          onChange={handleCheckbox}>
+          onChange={handleComics}>
           <option value="">
             Todos
             </option>

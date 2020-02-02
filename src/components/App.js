@@ -15,13 +15,12 @@ class App extends React.Component {
     this.state = {
       isLoading: true,
       search: "",
-      error: "",
       comics: "",
       characters: []
     }
 
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleCheckbox = this.handleCheckbox.bind(this);
+    this.handleComics = this.handleComics.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
   }
 
@@ -30,6 +29,7 @@ class App extends React.Component {
   handleSearch(search) {
     this.setState({
       search,
+      comics: this.state.comics,
       isLoading: true,
 
     })
@@ -43,6 +43,7 @@ class App extends React.Component {
         } else {
           this.setState({
             isLoading: false,
+            comics: this.state.comics,
             characters,
 
           })
@@ -52,19 +53,19 @@ class App extends React.Component {
         console.error('my error', err)
         this.setState({
           isLoading: false,
-          error: "Please try again"
+
         })
       })
   }
 
-  handleCheckbox(value) {
+  handleComics(value) {
+    let min;
+    let max;
+    const search = this.state.search;
+
     this.setState({
       comics: value
     })
-
-
-    let min;
-    let max;
 
     if (value === "-10") {
       min = 0;
@@ -83,24 +84,24 @@ class App extends React.Component {
       max = undefined;
     }
 
+    fetchCharacters(search, min, max)
+      .then(characters => {
+        if (characters === undefined) {
 
+          this.setState({
+            isLoading: true
 
-    fetchCharacters(this.state.search, min, max).then(characters => {
-      if (characters === undefined) {
-        this.setState({
-          isLoading: true,
+          })
+        } else {
 
-        })
-      } else {
+          this.setState({
 
-        this.setState({
-          isLoading: false,
+            isLoading: false,
+            characters
+          })
+        }
 
-          characters
-        })
-      }
-
-    })
+      })
   }
 
   // fetch
@@ -143,7 +144,7 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state.characters)
+    console.log(this.state)
     return (
       <div className="container">
         <Header />
@@ -153,7 +154,7 @@ class App extends React.Component {
             <Filters
               handleSearch={this.handleSearch}
               search={this.state.search}
-              handleCheckbox={this.handleCheckbox} />
+              handleComics={this.handleComics} />
             <CharactersList
               characters={this.state.characters}
             />
