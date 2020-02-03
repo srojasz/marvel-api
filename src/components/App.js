@@ -141,7 +141,7 @@ class App extends React.Component {
           <Loader />
         </div>)
       : (
-        <div className="m-2 b-image">
+        <div className="container">
           <Header
           />
 
