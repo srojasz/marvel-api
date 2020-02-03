@@ -18,49 +18,51 @@ function Filters(props) {
   }
 
   return (
-    <React.Fragment>
-      <form
-        className="form"
-        onSubmit={handleSubmit}
-      >
+
+    <form
+      className="form"
+      onSubmit={handleSubmit}
+    >
+      <section className="form-search">
         <label
           className="form__label" htmlFor="search">
-          <span className="form__label--name">¿Qué personaje buscas?</span>
+          ¿Qué personaje buscas?
         </label>
         <input
           className="form__input-text"
           type="text"
           name="search"
+          placeholder="Ej. Hulk"
           value={props.search}
           onChange={handleSearch} />
-      </form>
-      <form>
-        <h3 className="form__text">
-          Busca por cómics protagonizados:
+      </section>
+
+
+      <section className="form__comics">
+        <h3 className="form__comics--title">
+          ¿Cuántos cómics protagoniza?
       </h3>
-        <section className="form__checkbox">
-
-          <select
-            onChange={handleComics}>
-            <option value="">
-              Todos
+        <select className="form__comics--select"
+          onChange={handleComics}>
+          <option value="">
+            Todos
             </option>
-            <option value="-10">
-              Menos de 10 cómics
+          <option value="-10">
+            Menos de 10 cómics
               </option>
-            <option value="11-20">
-              Entre 11 y 20 cómics
+          <option value="11-20">
+            Entre 11 y 20 cómics
               </option>
-            <option value="+20">
-              Más de 20 cómics
+          <option value="+20">
+            Más de 20 cómics
               </option>
 
-          </select>
+        </select>
 
-        </section>
+      </section>
 
-      </form>
-    </React.Fragment>
+    </form>
+
   )
 }
 

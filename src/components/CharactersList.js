@@ -15,9 +15,11 @@ function CharactersList(props) {
   } else {
     return (
       <React.Fragment>
-        <p>Hay {props.characters.length} que coinciden con tus criterios de búsqueda </p>
-
         <section className="list">
+          <div className="list__info">Hay <span className="list__number">{props.characters.length}</span> personajes que coinciden con tus criterios de búsqueda
+          </div>
+
+
 
           <ul className="list__list">
             {props.characters.map(character =>
