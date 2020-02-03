@@ -35,7 +35,7 @@ function Filters(props) {
         placeholder="Ej. Hulk"
         onChange={handleSearch} />
       <h3 className="form__text">
-        Busca por cómics protagonozados:
+        Busca por cómics protagonizados:
       </h3>
       <section className="form__checkbox">
 
@@ -59,8 +59,6 @@ function Filters(props) {
       </section>
 
     </form>
-
-
   )
 }
 

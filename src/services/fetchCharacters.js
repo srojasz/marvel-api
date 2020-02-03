@@ -12,7 +12,7 @@ export function filterByComics(characters, min, max) {
 
 export default (name = undefined, min = undefined, max = undefined) => {
 
-  const apiUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&limit=100&apikey=4d46429eee763362f21b987f0e5f594a&hash=b9cc6de99e12cc463c64a0fee68e69bc';
+  const apiUrl = 'https://gateway.marvel.com:443/v1/public/characters?ts=1&limit=20&apikey=4d46429eee763362f21b987f0e5f594a&hash=b9cc6de99e12cc463c64a0fee68e69bc';
 
 
   const fetchUrl = name ? `${apiUrl}&nameStartsWith=${name}` : apiUrl;
@@ -27,8 +27,8 @@ export default (name = undefined, min = undefined, max = undefined) => {
       } else {
         return results
       }
-
     })
+
     .catch(error => {
       console.log(error);
     });

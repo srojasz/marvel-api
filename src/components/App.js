@@ -32,24 +32,18 @@ class App extends React.Component {
   handleSearch(search) {
     this.setState({
       search,
-      isLoading: true,
+      isLoading: false,
 
     })
 
     fetchCharacters(search)
       .then(characters => {
-        if (characters === undefined) {
-          this.setState({
-            isLoading: true,
-          })
-        } else {
-          this.setState({
-            isLoading: false,
-            characters,
-
-          })
-        }
+        this.setState({
+          isLoading: false,
+          characters
+        })
       })
+
       .catch(err => {
         console.error('my error', err)
       })
@@ -61,7 +55,6 @@ class App extends React.Component {
     const search = this.state.search;
     let min;
     let max;
-
 
     this.setState({
       comics: value
@@ -86,23 +79,16 @@ class App extends React.Component {
 
     fetchCharacters(search, min, max)
       .then(characters => {
-        if (characters === undefined) {
 
-          this.setState({
-            isLoading: true
+        this.setState({
+          isLoading: false,
+          characters
+        })
+      }
 
-          })
-        } else {
-
-          this.setState({
-
-            isLoading: false,
-            characters
-          })
-        }
-
-      })
+      )
   }
+
 
   // first fetch (no params)
 
@@ -152,11 +138,11 @@ class App extends React.Component {
     return isLoading
       ? (
         <div className="ml-5 mt-5">
-          < Loader />
+          <Loader />
         </div>)
       : (
         <div className="m-2 b-image">
-          < Header
+          <Header
           />
 
 
