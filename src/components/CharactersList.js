@@ -14,38 +14,40 @@ function CharactersList(props) {
     )
   } else {
     return (
-      <section className="list">
-        <ul className="list__list">
-          {props.characters.map(character =>
+      <React.Fragment>
+        <p>Hay {props.characters.length} que coinciden con tus criterios de búsqueda </p>
 
-            < li className="list__item"
+        <section className="list">
 
-              key={character.id}>
+          <ul className="list__list">
+            {props.characters.map(character =>
 
-              <CharacterCard
+              < li className="list__item"
 
-                name={character.name}
-                id={character.id}
-                img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                comic={character.comics.collectionURI}
-                comicNumber={character.comics.available}
+                key={character.id}>
 
-              />
+                <CharacterCard
+
+                  name={character.name}
+                  id={character.id}
+                  img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                  comic={character.comics.collectionURI}
+                  comicNumber={character.comics.available}
+
+                />
 
 
-            </li>
+              </li>
 
 
-          )
-          }
+            )
+            }
 
-        </ul >
-      </section>
+          </ul >
+        </section>
+      </React.Fragment>
     )
   }
-
-
-
 
 }
 

@@ -1,12 +1,14 @@
+// comics logic
+
 export function filterByComics(characters, min, max) {
-
   const result = characters.filter(character => {
-
     return character.comics.available >= min && character.comics.available <= max
   }
   );
   return result
 }
+
+// fetch with params
 
 export default (name = undefined, min = undefined, max = undefined) => {
 

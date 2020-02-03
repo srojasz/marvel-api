@@ -35,9 +35,9 @@ function Filters(props) {
         placeholder="Ej. Hulk"
         onChange={handleSearch} />
       <h3 className="form__text">
-        ¿O prefieres buscar por número de episodios protagonizados?</h3>
+        Busca por cómics protagonozados:
+      </h3>
       <section className="form__checkbox">
-
 
         <select
           onChange={handleComics}>

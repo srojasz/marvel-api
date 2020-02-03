@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import fetchCharacters from '../services/fetchCharacters';
 import "../stylesheets/app.scss"
+import Loader from "./Loader";
 import Header from "./Header";
 import Filters from "./Filters";
 import CharactersList from "./CharactersList";
@@ -26,10 +27,11 @@ class App extends React.Component {
 
   // helpers
 
+  // filter by text
+
   handleSearch(search) {
     this.setState({
       search,
-      comics: this.state.comics,
       isLoading: true,
 
     })
@@ -38,12 +40,11 @@ class App extends React.Component {
       .then(characters => {
         if (characters === undefined) {
           this.setState({
-            isLoading: true
+            isLoading: true,
           })
         } else {
           this.setState({
             isLoading: false,
-            comics: this.state.comics,
             characters,
 
           })
@@ -51,17 +52,16 @@ class App extends React.Component {
       })
       .catch(err => {
         console.error('my error', err)
-        this.setState({
-          isLoading: false,
-
-        })
       })
   }
 
+  // filter by comics
+
   handleComics(value) {
+    const search = this.state.search;
     let min;
     let max;
-    const search = this.state.search;
+
 
     this.setState({
       comics: value
@@ -104,7 +104,7 @@ class App extends React.Component {
       })
   }
 
-  // fetch
+  // first fetch (no params)
 
   componentDidMount() {
     fetchCharacters().then(characters => {
@@ -128,7 +128,8 @@ class App extends React.Component {
 
     const routeId = parseInt(props.match.params.id);
 
-    const selectedCharacter = this.state.characters.find(character => character.id === routeId)
+    const selectedCharacter = this.state.characters
+      .find(character => character.id === routeId)
     if (selectedCharacter === undefined) {
       return <h4 >
         Personaje no encontrado
@@ -142,30 +143,40 @@ class App extends React.Component {
     }
   }
 
-
   render() {
+
     console.log(this.state)
-    return (
-      <div className="container">
-        <Header />
 
-        <Switch>
-          <Route exact path='/'>
-            <Filters
-              handleSearch={this.handleSearch}
-              search={this.state.search}
-              handleComics={this.handleComics} />
-            <CharactersList
-              characters={this.state.characters}
-            />
-          </Route>
-          <Route
-            path='/character/:id'
-            render={this.renderCharacterDetail} />
+    const isLoading = this.state.isLoading;
 
-        </Switch>
-      </div >
-    );
+    return isLoading
+      ? (
+        <div className="ml-5 mt-5">
+          < Loader />
+        </div>)
+      : (
+        <div className="m-2 b-image">
+          < Header
+          />
+
+
+          <Switch>
+            <Route exact path='/'>
+              <Filters
+                handleSearch={this.handleSearch}
+                search={this.state.search}
+                handleComics={this.handleComics} />
+              <CharactersList
+                characters={this.state.characters}
+              />
+            </Route>
+            <Route
+              path='/character/:id'
+              render={this.renderCharacterDetail} />
+
+          </Switch>
+        </div >
+      );
   }
 }
 
