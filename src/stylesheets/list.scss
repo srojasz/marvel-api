@@ -21,11 +21,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 90vw;
   }
+}
 
-  &__item {
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 70%;
+  border: none;
+  border-radius: 1.2rem;
+  padding: 1.5rem 0;
+
+  background-color: dodgerblue;
+
+  margin: 0.2rem;
+
+  @media all and (min-width: 768px) {
     width: 30%;
   }
 }

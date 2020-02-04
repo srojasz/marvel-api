@@ -24,7 +24,7 @@ function CharactersList(props) {
           <ul className="list__list">
             {props.characters.map(character =>
 
-              < li className="list__item"
+              < li className="card"
 
                 key={character.id}>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../stylesheets/card.scss";
 
 function CharacterCard(props) {
 
@@ -7,7 +8,7 @@ function CharacterCard(props) {
   const route = `/character/${id}`;
 
   return (
-    <div className="card">
+    <React.Fragment>
       <img
         className="card__img"
         alt={`Imagen de ${name}`}
@@ -26,7 +27,7 @@ function CharacterCard(props) {
         </button>
       </Link>
 
-    </div>
+    </React.Fragment>
   )
 }
 
