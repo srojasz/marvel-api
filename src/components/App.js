@@ -17,12 +17,14 @@ class App extends React.Component {
       isLoading: true,
       search: "",
       comics: "",
+      orderBy: "",
       characters: []
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleComics = this.handleComics.bind(this);
     this.renderCharacterDetail = this.renderCharacterDetail.bind(this);
+    this.sortResults = this.sortResults.bind(this);
   }
 
   // helpers
@@ -100,6 +102,31 @@ class App extends React.Component {
       )
   }
 
+  // sort results
+
+  sortResults(orderBy) {
+
+    const search = this.state.search;
+
+    const { min, max } = this.selectComicsRange(this.state.comics);
+
+    this.setState({
+      orderBy
+
+    })
+
+    fetchCharacters(search, min, max, orderBy)
+      .then(characters => {
+
+        this.setState({
+          isLoading: false,
+          characters
+        })
+      }
+
+      )
+  }
+
 
   // first fetch (no params)
 
@@ -141,7 +168,7 @@ class App extends React.Component {
   }
 
   render() {
-
+    console.log(this.state.characters)
     const isLoading = this.state.isLoading;
 
     return isLoading
@@ -163,6 +190,7 @@ class App extends React.Component {
                 handleComics={this.handleComics} />
               <CharactersList
                 characters={this.state.characters}
+                sortResults={this.sortResults}
               />
             </Route>
             <Route

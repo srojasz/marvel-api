@@ -3,7 +3,14 @@ import noresults from "../images/no-results.jpg";
 import "../stylesheets/list.scss";
 import CharacterCard from './CharacterCard';
 
+
 function CharactersList(props) {
+
+  function sortResults(ev) {
+    const orderBy = ev.target.value;
+    props.sortResults(orderBy);
+  }
+
   if (props.characters.length === 0) {
     return (
       <section className="noresults">
@@ -16,8 +23,21 @@ function CharactersList(props) {
     return (
       <React.Fragment>
         <section className="list">
-          <div className="list__info">Hay <span className="list__number">{props.characters.length}</span> personajes que coinciden con tus criterios de búsqueda
+          <div className="list__info">
+            Hay <span className="list__number">{props.characters.length}</span> personajes que coinciden con tus criterios de búsqueda
           </div>
+          <form>
+            <label>Ordenar resultados por:</label>
+            <select onChange={sortResults}>
+              <option value="name">
+                Nombre</option>
+              <option value="modified">Modificado</option>
+            </select>
+
+          </form>
+          <button
+            className="list__button"
+          >Ordenar resutados</button>
 
           <ul className="list__list">
             {props.characters.map(character =>

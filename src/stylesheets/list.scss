@@ -24,6 +24,15 @@
     align-items: flex-start;
     width: 90vw;
   }
+
+  &__button {
+    background-color: dodgerblue;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
 }
 
 .card {
