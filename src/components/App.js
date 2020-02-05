@@ -27,39 +27,10 @@ class App extends React.Component {
 
   // helpers
 
-  // filter by text
+  selectComicsRange(value) {
 
-  handleSearch(search) {
-    this.setState({
-      search,
-      isLoading: false,
-
-    })
-
-    fetchCharacters(search)
-      .then(characters => {
-        this.setState({
-          isLoading: false,
-          characters
-        })
-      })
-
-      .catch(err => {
-        console.error('my error', err)
-      })
-  }
-
-  // filter by comics
-
-  handleComics(value) {
-    const search = this.state.search;
     let min;
     let max;
-
-    this.setState({
-      comics: value
-    })
-
     if (value === "-10") {
       min = 0;
       max = 10;
@@ -76,6 +47,46 @@ class App extends React.Component {
       min = undefined;
       max = undefined;
     }
+
+    return { min, max }
+  }
+
+  // filter by text
+
+  handleSearch(search) {
+
+    const { min, max } = this.selectComicsRange(this.state.comics);
+
+    this.setState({
+      search,
+      isLoading: false,
+
+    })
+
+    fetchCharacters(search, min, max)
+      .then(characters => {
+        this.setState({
+          isLoading: false,
+          characters
+        })
+      })
+
+      .catch(err => {
+        console.error('my error', err)
+      })
+  }
+
+  // filter by comics
+
+  handleComics(value) {
+    const search = this.state.search;
+
+    const { min, max } = this.selectComicsRange(value);
+
+    this.setState({
+      comics: value
+    })
+
 
     fetchCharacters(search, min, max)
       .then(characters => {
