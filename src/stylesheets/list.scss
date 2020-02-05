@@ -33,6 +33,13 @@
     margin-bottom: 1.5rem;
     color: white;
   }
+
+  &__results--label {
+    margin-right: 1rem;
+  }
+  &__results--select {
+    padding: 0.3rem;
+  }
 }
 
 .card {
@@ -49,7 +56,7 @@
   background-color: dodgerblue;
   color: white;
 
-  margin: 0.2rem 0 1rem 0;
+  margin: 1.2rem 0 1rem 0;
 
   @media all and (min-width: 768px) {
     width: 30%;

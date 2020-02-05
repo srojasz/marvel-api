@@ -27,17 +27,15 @@ function CharactersList(props) {
             Hay <span className="list__number">{props.characters.length}</span> personajes que coinciden con tus criterios de búsqueda
           </div>
           <form>
-            <label>Ordenar resultados por:</label>
-            <select onChange={sortResults}>
+            <label className="list__results--label">Ordenar resultados por:</label>
+            <select className="list__results--select"
+              onChange={sortResults}>
               <option value="name">
                 Nombre</option>
               <option value="modified">Modificado</option>
             </select>
 
           </form>
-          <button
-            className="list__button"
-          >Ordenar resutados</button>
 
           <ul className="list__list">
             {props.characters.map(character =>
