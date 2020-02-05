@@ -4,7 +4,7 @@ import "../stylesheets/card.scss";
 
 function CharacterCard(props) {
 
-  const { name, id, img, comic, comicNumber } = props;
+  const { name, id, img, comicNumber } = props;
   const route = `/character/${id}`;
 
   return (
@@ -13,15 +13,12 @@ function CharacterCard(props) {
         className="card__img"
         alt={`Imagen de ${name}`}
         src={img} />
-      <p>{name}</p>
-      <p>Número de comics disponibles: {comicNumber}</p>
-      <a
-        href={comic}
-        title={`Pincha aquí para acceder a los comics disponibles de ${name}`}>
-        {`Descubre los comics de ${name}`}
-      </a>
+      <h3>{name}</h3>
+      {/* <p>Número de comics disponibles: {comicNumber}</p> */}
+
       <Link to={route}>
         <button
+          className="card__button"
           title="Pincha aquí para conocer todos los detalles">
           Más información
         </button>
@@ -30,8 +27,5 @@ function CharacterCard(props) {
     </React.Fragment>
   )
 }
-
-
-
 
 export default CharacterCard;

@@ -1,5 +1,14 @@
 .card {
   &__img {
     width: 90%;
+
+    margin-bottom: 0.8rem;
+  }
+
+  &__button {
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.7rem;
+    background-color: white;
   }
 }

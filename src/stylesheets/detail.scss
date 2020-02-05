@@ -1,0 +1,24 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  max-width: 500px;
+  background-color: dodgerblue;
+  border-radius: 1.2rem;
+  color: white;
+  padding: 1rem;
+
+  &__button {
+    padding: 0.5rem;
+    background-color: white;
+    border: none;
+    margin: 1rem;
+  }
+
+  &__img {
+    width: 70%;
+    margin-bottom: 1rem;
+  }
+}
