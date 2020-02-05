@@ -19,8 +19,6 @@ function CharactersList(props) {
           <div className="list__info">Hay <span className="list__number">{props.characters.length}</span> personajes que coinciden con tus criterios de búsqueda
           </div>
 
-
-
           <ul className="list__list">
             {props.characters.map(character =>
 
@@ -33,7 +31,6 @@ function CharactersList(props) {
                   name={character.name}
                   id={character.id}
                   img={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                // comicNumber={character.comics.available}
 
                 />
 
@@ -49,6 +46,8 @@ function CharactersList(props) {
   }
 
 }
+
+
 
 export default CharactersList;
 

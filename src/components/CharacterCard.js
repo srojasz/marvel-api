@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import "../stylesheets/card.scss";
 
 function CharacterCard(props) {
 
-  const { name, id, img, comicNumber } = props;
+  const { name, id, img } = props;
   const route = `/character/${id}`;
 
   return (
@@ -14,7 +15,7 @@ function CharacterCard(props) {
         alt={`Imagen de ${name}`}
         src={img} />
       <h3>{name}</h3>
-      {/* <p>Número de comics disponibles: {comicNumber}</p> */}
+
 
       <Link to={route}>
         <button
@@ -26,6 +27,14 @@ function CharacterCard(props) {
 
     </React.Fragment>
   )
+}
+//PropTypes
+CharacterCard.propTypes = {
+
+  name: PropTypes.string,
+  id: PropTypes.number,
+  img: PropTypes.string,
+
 }
 
 export default CharacterCard;

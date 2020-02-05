@@ -17,7 +17,7 @@ export default (name = undefined, min = undefined, max = undefined) => {
 
   const fetchUrl = name ? `${apiUrl}&nameStartsWith=${name}` : apiUrl;
 
-  console.log(apiUrl)
+
   return fetch(fetchUrl)
     .then(response => response.json())
     .then(responseData => responseData.data.results)
